@@ -14,13 +14,13 @@
         .scroll-fade { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-fade.visible { opacity: 1; transform: translateY(0); }
         
-        /* 마스킹 테이프: 요청하신 노란끼 도는 빈티지 컬러 적용 */
         .masking-tape {
-            background-color: rgba(253, 245, 210, 0.85);
+            background-color: rgba(253, 245, 210, 0.9);
             backdrop-filter: blur(1.5px);
-            border: 1px solid rgba(230, 220, 180, 0.4);
+            border: 1px solid rgba(230, 220, 180, 0.5);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             clip-path: polygon(2% 5%, 95% 0%, 100% 90%, 92% 100%, 8% 95%, 0% 85%);
+            z-index: 50;
         }
         .primary-color { color: #4a5d4e; }
         .primary-bg { background-color: #4a5d4e; }
@@ -44,7 +44,7 @@
                 <span class="mx-4 opacity-10 font-thin text-4xl">|</span>
                 <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신부</span> <span>박해달</span>
             </h1>
-            <p class="text-lg md:text-xl font-bold tracking-[0.1em] sans primary-color">2027년 01월 30일 (토) 12:30</p>
+            <p class="text-lg md:text-xl font-bold tracking-[0.1em] serif primary-color">2027년 01월 30일 (토) 12:30</p>
         </div>
     </section>
 
@@ -57,15 +57,15 @@
             저희 두 사람이 하나가 되는 소중한 날, 귀한 걸음 하시어 축복해 주시면 감사하겠습니다.
         </p>
         
-        <div class="mt-10 space-y-4 text-stone-800 text-[17px]">
+        <div class="mt-10 space-y-5 text-stone-800 text-[21px]">
             <div class="flex items-center justify-center gap-2">
                 <span>이조개 · 김미역</span>
-                <span class="opacity-40 text-sm">의 아들</span>
+                <span class="opacity-40 text-base">의 아들</span>
                 <span class="font-bold">수달</span>
             </div>
             <div class="flex items-center justify-center gap-2">
                 <span>박파도 · 최모래</span>
-                <span class="opacity-40 text-sm">의 딸</span>
+                <span class="opacity-40 text-base">의 딸</span>
                 <span class="font-bold">해달</span>
             </div>
         </div>
@@ -73,44 +73,40 @@
         <div class="w-20 h-[1px] bg-stone-200 mx-auto mt-20"></div>
     </section>
 
-    <!-- 3. 스토리 섹션 (문구 추가 및 간격 축소) -->
+    <!-- 3. 스토리 섹션 -->
     <section class="py-10 space-y-20 overflow-hidden">
         <div class="text-center mb-10">
             <p class="text-[13px] opacity-50 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
         </div>
 
-        <!-- 사진 1 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-2deg]"></div>
-                <div class="drop-shadow-2xl rotate-[-2deg]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-2deg]"></div>
+                <div class="drop-shadow-2xl rotate-[-2deg] relative z-10">
                     <img src="./images/sample_story1.png" class="w-full h-auto block" alt="Story 1">
                 </div>
             </div>
         </div>
-        <!-- 사진 2 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[1.5deg]"></div>
-                <div class="drop-shadow-2xl rotate-[2.5deg]">
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[1.5deg]"></div>
+                <div class="drop-shadow-2xl rotate-[2.5deg] relative z-10">
                     <img src="./images/sample_story2.png" class="w-full h-auto block" alt="Story 2">
                 </div>
             </div>
         </div>
-        <!-- 사진 3 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-1deg]"></div>
-                <div class="drop-shadow-2xl rotate-[-1.5deg]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-1deg]"></div>
+                <div class="drop-shadow-2xl rotate-[-1.5deg] relative z-10">
                     <img src="./images/sample_story3.png" class="w-full h-auto block" alt="Story 3">
                 </div>
             </div>
         </div>
-        <!-- 사진 4 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[2deg]"></div>
-                <div class="drop-shadow-2xl rotate-[3deg]">
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[2deg]"></div>
+                <div class="drop-shadow-2xl rotate-[3deg] relative z-10">
                     <img src="./images/sample_story4.png" class="w-full h-auto block" alt="Story 4">
                 </div>
             </div>
@@ -131,7 +127,6 @@
             
             <div class="col-start-6 h-10 flex items-center justify-center opacity-60">1</div>
             <div class="h-10 flex items-center justify-center text-[#5bc0de]">2</div>
-            
             <div class="text-[#d9534f] h-10 flex items-center justify-center">3</div>
             <div class="h-10 flex items-center justify-center opacity-60">4</div>
             <div class="h-10 flex items-center justify-center opacity-60">5</div>
@@ -139,7 +134,6 @@
             <div class="h-10 flex items-center justify-center opacity-60">7</div>
             <div class="h-10 flex items-center justify-center opacity-60">8</div>
             <div class="h-10 flex items-center justify-center text-[#5bc0de]">9</div>
-
             <div class="text-[#d9534f] h-10 flex items-center justify-center">10</div>
             <div class="h-10 flex items-center justify-center opacity-60">11</div>
             <div class="h-10 flex items-center justify-center opacity-60">12</div>
@@ -147,7 +141,6 @@
             <div class="h-10 flex items-center justify-center opacity-60">14</div>
             <div class="h-10 flex items-center justify-center opacity-60">15</div>
             <div class="h-10 flex items-center justify-center text-[#5bc0de]">16</div>
-
             <div class="text-[#d9534f] h-10 flex items-center justify-center">17</div>
             <div class="h-10 flex items-center justify-center opacity-60">18</div>
             <div class="h-10 flex items-center justify-center opacity-60">19</div>
@@ -155,17 +148,15 @@
             <div class="h-10 flex items-center justify-center opacity-60">21</div>
             <div class="h-10 flex items-center justify-center opacity-60">22</div>
             <div class="h-10 flex items-center justify-center text-[#5bc0de]">23</div>
-
             <div class="text-[#d9534f] h-10 flex items-center justify-center">24</div>
             <div class="h-10 flex items-center justify-center opacity-60">25</div>
             <div class="h-10 flex items-center justify-center opacity-60">26</div>
             <div class="h-10 flex items-center justify-center opacity-60">27</div>
             <div class="h-10 flex items-center justify-center opacity-60">28</div>
             <div class="h-10 flex items-center justify-center opacity-60">29</div>
-            
-            <div class="relative flex items-center justify-center h-10">
-                <i class="fa-solid fa-heart primary-color text-3xl opacity-80"></i>
-                <span class="absolute text-white text-[10px] font-bold pb-0.5">30</span>
+            <div class="relative flex items-center justify-center h-10 w-10 mx-auto">
+                <i class="fa-solid fa-heart primary-color text-4xl opacity-85 scale-110"></i>
+                <span class="absolute text-white text-[15px] font-bold pb-0.5">30</span>
             </div>
             <div class="text-[#d9534f] h-10 flex items-center justify-center">31</div>
         </div>
@@ -196,19 +187,15 @@
         </div>
     </section>
 
-    <!-- 6. 오시는 길 (복구 완료) -->
+    <!-- 6. 오시는 길 -->
     <section class="py-32 px-8 text-center border-t border-stone-50 bg-white">
         <p class="text-[12px] tracking-[0.5em] opacity-40 uppercase mb-10 font-bold primary-color sans">The Venue</p>
         <p class="text-2xl font-bold mb-4 text-stone-800">더채플앳논현 6F 라포레홀</p>
         <p class="text-stone-500 mb-16">서울 강남구 논현로 549</p>
-        
-        <!-- 약도 표시 구역 (임시 이미지) -->
         <div class="aspect-video bg-stone-100 max-w-md mx-auto rounded-sm overflow-hidden flex flex-col items-center justify-center gap-4 text-stone-300 border border-stone-100">
              <i class="fa-solid fa-map-location-dot text-4xl opacity-50"></i>
              <span class="text-[10px] font-bold uppercase tracking-[0.3em] sans">Map View Area</span>
         </div>
-        
-        <!-- 지도 버튼 -->
         <div class="flex flex-col items-center gap-4 mt-14">
             <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="inline-block px-14 py-5 text-white text-[11px] font-bold tracking-[0.3em] uppercase rounded-sm shadow-xl sans primary-bg active:scale-95 transition-all">NAVER MAP</a>
         </div>
@@ -255,14 +242,23 @@
         </div>
     </section>
 
-    <!-- 푸터 -->
-    <footer class="py-20 text-center bg-white border-t border-stone-100">
-        <p class="text-[11px] tracking-[1.2em] opacity-30 uppercase font-black mb-1 sans text-center">Otter's Letter</p>
-        <p class="text-[14px] font-bold text-stone-300 mb-8 tracking-widest serif text-center">오또의 청첩장</p>
-        <p class="text-[12px] opacity-40 font-bold text-stone-500 tracking-[0.5em] sans text-center">@오또의 청첩장</p>
+    <!-- 8. 새로운 푸터 디자인 (© 기호 및 문구 업데이트) -->
+    <footer class="py-24 text-center bg-white border-t border-stone-100">
+        <div class="max-w-xs mx-auto space-y-6">
+            <div class="space-y-1">
+                <p class="text-[11px] tracking-[0.8em] opacity-30 uppercase font-black sans">OTTER'S LETTER</p>
+                <p class="text-[18px] font-bold tracking-[0.2em] serif primary-color">오또의 청첩장</p>
+            </div>
+            
+            <div class="w-px h-10 bg-stone-100 mx-auto"></div>
+            
+            <div class="space-y-2">
+                <p class="text-[11px] opacity-30 sans tracking-wider uppercase">&copy; 2026 OTTER'S LETTER. All rights reserved.</p>
+                <p class="text-[13px] opacity-60 serif primary-color italic">당신의 소중한 순간을 담습니다.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- 알림 메시지 -->
     <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-stone-800 text-white px-8 py-3 rounded-full text-xs tracking-widest opacity-0 transition-opacity pointer-events-none z-[10000]">계좌번호가 복사되었습니다.</div>
 
     <script>
