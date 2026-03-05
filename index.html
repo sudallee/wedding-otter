@@ -14,14 +14,16 @@
         .scroll-fade { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-fade.visible { opacity: 1; transform: translateY(0); }
         
-        /* 마스킹 테이프 시인성 강화 */
+        /* 마스킹 테이프: 요청하신 노란끼 도는 빈티지 컬러 적용 */
         .masking-tape {
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(253, 245, 210, 0.85);
             backdrop-filter: blur(1.5px);
-            border: 1px solid rgba(200, 200, 200, 0.3);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+            border: 1px solid rgba(230, 220, 180, 0.4);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             clip-path: polygon(2% 5%, 95% 0%, 100% 90%, 92% 100%, 8% 95%, 0% 85%);
         }
+        .primary-color { color: #4a5d4e; }
+        .primary-bg { background-color: #4a5d4e; }
     </style>
 </head>
 <body>
@@ -34,30 +36,27 @@
     <!-- 1. 히어로 섹션 -->
     <section class="relative flex flex-col items-center bg-white border-b border-stone-100">
         <div class="w-full flex items-center justify-center overflow-hidden bg-stone-50">
-            <!-- 메인 사진 잘림 방지: 가로 꽉 차게 혹은 비율 유지 -->
             <img src="./images/sample_main.jpg" alt="Main" class="w-full h-auto max-h-[80vh] object-contain">
         </div>
         <div class="z-10 text-center w-full py-16 bg-white/60 backdrop-blur-md">
-            <p class="tracking-[1em] text-[10px] mb-6 font-bold text-stone-400 uppercase sans">Save the Date</p>
             <h1 class="text-3xl md:text-4xl mb-8 tracking-widest flex items-center justify-center gap-3">
                 <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신랑</span> <span>이수달</span>
                 <span class="mx-4 opacity-10 font-thin text-4xl">|</span>
                 <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신부</span> <span>박해달</span>
             </h1>
-            <p class="text-xl font-bold tracking-[0.2em] sans text-[#4a5d4e]">2027 . 01 . 30 . SAT . 12:30</p>
+            <p class="text-lg md:text-xl font-bold tracking-[0.1em] sans primary-color">2027년 01월 30일 (토) 12:30</p>
         </div>
     </section>
 
     <!-- 2. 초대글 및 가족 관계 -->
     <section class="scroll-fade py-32 px-10 text-center">
-        <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-16 font-bold text-[#4a5d4e]">The Invitation</p>
+        <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-16 font-bold primary-color">The Invitation</p>
         <p class="leading-[2.8] text-[18px] break-keep max-w-sm mx-auto mb-20 text-stone-700">
-            함께 있을 때 비로소 가장 나다운 모습이 되는 사람을 만났습니다.<br><br>
+            함께 있을 때 비로소<br> 가장 나다운 모습이 되는 사람을 만났습니다.<br><br>
             서로의 빈틈을 따뜻한 손길로 채워주며 함께 걷는 모든 길에 사랑을 심으려 합니다.<br><br>
             저희 두 사람이 하나가 되는 소중한 날, 귀한 걸음 하시어 축복해 주시면 감사하겠습니다.
         </p>
         
-        <!-- 부모님 성함 및 서열 추가 -->
         <div class="mt-10 space-y-4 text-stone-800 text-[17px]">
             <div class="flex items-center justify-center gap-2">
                 <span>이조개 · 김미역</span>
@@ -74,13 +73,16 @@
         <div class="w-20 h-[1px] bg-stone-200 mx-auto mt-20"></div>
     </section>
 
-    <!-- 3. 스토리 섹션 (프레임 제거: 원본 둥근 모양 그대로 노출) -->
-    <section class="py-10 space-y-32 overflow-hidden">
+    <!-- 3. 스토리 섹션 (문구 추가 및 간격 축소) -->
+    <section class="py-10 space-y-20 overflow-hidden">
+        <div class="text-center mb-10">
+            <p class="text-[13px] opacity-50 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
+        </div>
+
         <!-- 사진 1 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
-            <div class="relative w-[85%] sm:w-[55%]">
+            <div class="relative w-[80%] sm:w-[55%]">
                 <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-2deg]"></div>
-                <!-- shadow만 주되 원본 모양 유지하도록 overflow 제거 -->
                 <div class="drop-shadow-2xl rotate-[-2deg]">
                     <img src="./images/sample_story1.png" class="w-full h-auto block" alt="Story 1">
                 </div>
@@ -88,8 +90,8 @@
         </div>
         <!-- 사진 2 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
-            <div class="relative w-[85%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[1.5deg]"></div>
+            <div class="relative w-[80%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[1.5deg]"></div>
                 <div class="drop-shadow-2xl rotate-[2.5deg]">
                     <img src="./images/sample_story2.png" class="w-full h-auto block" alt="Story 2">
                 </div>
@@ -97,7 +99,7 @@
         </div>
         <!-- 사진 3 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
-            <div class="relative w-[85%] sm:w-[55%]">
+            <div class="relative w-[80%] sm:w-[55%]">
                 <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-1deg]"></div>
                 <div class="drop-shadow-2xl rotate-[-1.5deg]">
                     <img src="./images/sample_story3.png" class="w-full h-auto block" alt="Story 3">
@@ -106,8 +108,8 @@
         </div>
         <!-- 사진 4 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
-            <div class="relative w-[85%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[2deg]"></div>
+            <div class="relative w-[80%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[2deg]"></div>
                 <div class="drop-shadow-2xl rotate-[3deg]">
                     <img src="./images/sample_story4.png" class="w-full h-auto block" alt="Story 4">
                 </div>
@@ -115,10 +117,9 @@
         </div>
     </section>
 
-    <!-- 4. 달력 (가독성 및 간격 최적화) -->
+    <!-- 4. 달력 -->
     <section class="py-32 bg-stone-100/30 text-center border-y border-stone-100">
-        <h3 class="text-2xl font-bold tracking-[0.3em] mb-16 uppercase text-stone-800 sans">January 2027</h3>
-        <!-- 모바일 가독성을 위해 gap 조정 -->
+        <h3 class="text-2xl font-bold tracking-[0.2em] mb-16 uppercase text-stone-800 serif text-center">January 2027</h3>
         <div class="max-w-[340px] mx-auto grid grid-cols-7 gap-y-8 gap-x-2 text-[15px] sans px-4">
             <div class="text-[#d9534f] font-bold text-[11px]">SUN</div>
             <div class="opacity-40 font-bold text-[11px]">MON</div>
@@ -163,57 +164,91 @@
             <div class="h-10 flex items-center justify-center opacity-60">29</div>
             
             <div class="relative flex items-center justify-center h-10">
-                <i class="fa-solid fa-heart text-[#4a5d4e] text-3xl opacity-80"></i>
+                <i class="fa-solid fa-heart primary-color text-3xl opacity-80"></i>
                 <span class="absolute text-white text-[10px] font-bold pb-0.5">30</span>
             </div>
             <div class="text-[#d9534f] h-10 flex items-center justify-center">31</div>
         </div>
-        <div class="mt-32">
-            <div class="w-px h-16 bg-stone-200 mx-auto mb-10"></div>
-            <p class="text-xl font-bold mb-3 tracking-widest text-stone-800 sans">2027.01.30</p>
-            <p id="d-day-text" class="text-6xl font-black italic tracking-tighter sans text-[#4a5d4e]">D-DAY</p>
+        <div class="mt-32 text-center">
+            <div class="w-px h-16 bg-stone-200 mx-auto mb-8"></div>
+            <p class="text-sm opacity-50 mb-3 tracking-widest serif">결혼식까지 남은 시간</p>
+            <p id="d-day-text" class="text-6xl font-black italic tracking-tighter sans primary-color">D-DAY</p>
         </div>
     </section>
 
-    <!-- 5. 마음 전하실 곳 (전체 복구) -->
+    <!-- 5. 갤러리 -->
+    <section class="py-32 px-4 bg-white text-center">
+        <h2 class="text-4xl font-bold italic mb-6 serif">Gallery</h2>
+        <div class="w-12 h-[1px] bg-stone-200 mx-auto mb-16"></div>
+        <div class="grid grid-cols-3 gap-1.5 max-w-md mx-auto">
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery4.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+4'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery5.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+5'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery6.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+6'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery7.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+7'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery8.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+8'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery9.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+9'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery10.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+10'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery11.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+11'"></div>
+            <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery12.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+12'"></div>
+        </div>
+    </section>
+
+    <!-- 6. 오시는 길 (복구 완료) -->
+    <section class="py-32 px-8 text-center border-t border-stone-50 bg-white">
+        <p class="text-[12px] tracking-[0.5em] opacity-40 uppercase mb-10 font-bold primary-color sans">The Venue</p>
+        <p class="text-2xl font-bold mb-4 text-stone-800">더채플앳논현 6F 라포레홀</p>
+        <p class="text-stone-500 mb-16">서울 강남구 논현로 549</p>
+        
+        <!-- 약도 표시 구역 (임시 이미지) -->
+        <div class="aspect-video bg-stone-100 max-w-md mx-auto rounded-sm overflow-hidden flex flex-col items-center justify-center gap-4 text-stone-300 border border-stone-100">
+             <i class="fa-solid fa-map-location-dot text-4xl opacity-50"></i>
+             <span class="text-[10px] font-bold uppercase tracking-[0.3em] sans">Map View Area</span>
+        </div>
+        
+        <!-- 지도 버튼 -->
+        <div class="flex flex-col items-center gap-4 mt-14">
+            <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="inline-block px-14 py-5 text-white text-[11px] font-bold tracking-[0.3em] uppercase rounded-sm shadow-xl sans primary-bg active:scale-95 transition-all">NAVER MAP</a>
+        </div>
+    </section>
+
+    <!-- 7. 마음 전하실 곳 -->
     <section class="pt-32 pb-10 px-8 bg-stone-100/30">
-        <h2 class="text-3xl font-bold mb-20 text-stone-800 text-center">마음 전하실 곳</h2>
+        <h2 class="text-3xl font-bold mb-20 text-stone-800 text-center serif">마음 전하실 곳</h2>
         <div class="max-w-md mx-auto space-y-12">
-            
-            <!-- 신랑측 -->
             <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
-                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신랑측 계좌번호</p>
+                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center primary-color">신랑측 계좌번호</p>
                 <div class="space-y-6">
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">GROOM</span><span class="text-[16px] font-bold">이수달</span><span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span></div>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Groom</span><span class="text-[16px] font-bold">이수달</span><span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span></div>
                         <button onclick="copyText('1002-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Father</span><span class="text-[16px] font-bold">이조개</span><span class="text-[13px] text-stone-500">농협은행 302-1234-5678</span></div>
-                        <button onclick="copyText('302-1234-5678')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Father</span><span class="text-[16px] font-bold">이조개</span><span class="text-[13px] text-stone-500">농협은행 302-1234-5678-01</span></div>
+                        <button onclick="copyText('302-1234-5678-01')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Mother</span><span class="text-[16px] font-bold">김미역</span><span class="text-[13px] text-stone-500">국민은행 123456-01-1234</span></div>
-                        <button onclick="copyText('123456-01-1234')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span><span class="text-[16px] font-bold">김미역</span><span class="text-[13px] text-stone-500">국민은행 123456-01-123456</span></div>
+                        <button onclick="copyText('123456-01-123456')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                 </div>
             </div>
-
-            <!-- 신부측 -->
             <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
-                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신부측 계좌번호</p>
+                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center primary-color">신부측 계좌번호</p>
                 <div class="space-y-6">
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">BRIDE</span><span class="text-[16px] font-bold">박해달</span><span class="text-[13px] text-stone-500">신한은행 110-123-456789</span></div>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Bride</span><span class="text-[16px] font-bold">박해달</span><span class="text-[13px] text-stone-500">신한은행 110-123-456789</span></div>
                         <button onclick="copyText('110-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Father</span><span class="text-[16px] font-bold">박파도</span><span class="text-[13px] text-stone-500">기업은행 010-1234-5678</span></div>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Father</span><span class="text-[16px] font-bold">박파도</span><span class="text-[13px] text-stone-500">기업은행 010-1234-5678</span></div>
                         <button onclick="copyText('010-1234-5678')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Mother</span><span class="text-[16px] font-bold">최모래</span><span class="text-[13px] text-stone-500">카카오 3333-01-12345</span></div>
-                        <button onclick="copyText('3333-01-12345')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span><span class="text-[16px] font-bold">최모래</span><span class="text-[13px] text-stone-500">카카오 3333-01-1234567</span></div>
+                        <button onclick="copyText('3333-01-1234567')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                 </div>
             </div>
@@ -222,11 +257,12 @@
 
     <!-- 푸터 -->
     <footer class="py-20 text-center bg-white border-t border-stone-100">
-        <p class="text-[11px] tracking-[1.2em] opacity-30 uppercase font-black mb-1 sans">Otter's Letter</p>
-        <p class="text-[14px] font-bold text-stone-300 mb-8 tracking-widest">오또의 청첩장</p>
-        <p class="text-[12px] opacity-40 font-bold text-stone-500 tracking-[0.5em]">@오또의 청첩장</p>
+        <p class="text-[11px] tracking-[1.2em] opacity-30 uppercase font-black mb-1 sans text-center">Otter's Letter</p>
+        <p class="text-[14px] font-bold text-stone-300 mb-8 tracking-widest serif text-center">오또의 청첩장</p>
+        <p class="text-[12px] opacity-40 font-bold text-stone-500 tracking-[0.5em] sans text-center">@오또의 청첩장</p>
     </footer>
 
+    <!-- 알림 메시지 -->
     <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-stone-800 text-white px-8 py-3 rounded-full text-xs tracking-widest opacity-0 transition-opacity pointer-events-none z-[10000]">계좌번호가 복사되었습니다.</div>
 
     <script>
