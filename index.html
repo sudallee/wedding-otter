@@ -8,24 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* 배경은 차분한 톤으로, 본문은 종이색으로 설정 */
-        body { font-family: 'Gowun Batang', 'Noto Sans KR', serif; background-color: #e5e5e5; color: #1a1a1a; margin: 0; padding: 0; }
+        /* 기본 배경 및 폰트 설정 */
+        body { font-family: 'Gowun Batang', 'Noto Sans KR', serif; background-color: #e2e4e6; color: #1a1a1a; margin: 0; padding: 0; }
         .serif { font-family: 'Gowun Batang', serif; }
         .sans { font-family: 'Noto Sans KR', sans-serif; }
         
-        /* 모바일 청첩장 컨테이너 (PC 최적화) */
+        /* 모바일 청첩장 컨테이너 (PC 최적화: 500px) */
         .mobile-container {
             max-width: 500px;
             margin: 0 auto;
-            background-color: #f5f5f3; 
+            background-color: #f2f3f4; 
             min-height: 100vh;
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .scroll-fade { opacity: 0; transform: translateY(20px); transition: all 1s ease-out; }
-        .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+        /* [애니메이션] 스크롤 시 서서히 나타나는 효과 - 과하지 않게 20px만 이동 */
+        .scroll-fade { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out; 
+            will-change: opacity, transform;
+        }
+        .scroll-fade.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
         
         /* 마스킹 테이프 디자인 */
         .masking-tape {
@@ -39,17 +48,17 @@
         .primary-color { color: #4a5d4e; }
         .primary-bg { background-color: #4a5d4e; }
 
-        /* 폴라로이드 살랑살랑 애니메이션 */
+        /* 폴라로이드 미세 흔들림 애니메이션 */
         @keyframes swayLeft {
             0%, 100% { transform: rotate(-2deg) translateY(0); }
-            50% { transform: rotate(-3.5deg) translateY(-5px); }
+            50% { transform: rotate(-2.5deg) translateY(-2px); }
         }
         @keyframes swayRight {
             0%, 100% { transform: rotate(3deg) translateY(0); }
-            50% { transform: rotate(1.5deg) translateY(-5px); }
+            50% { transform: rotate(2.5deg) translateY(-2px); }
         }
-        .animate-sway-left { animation: swayLeft 4s ease-in-out infinite; }
-        .animate-sway-right { animation: swayRight 4.5s ease-in-out infinite; }
+        .animate-sway-left { animation: swayLeft 5s ease-in-out infinite; }
+        .animate-sway-right { animation: swayRight 5.5s ease-in-out infinite; }
     </style>
 </head>
 <body>
@@ -57,16 +66,17 @@
     <div class="mobile-container">
         
         <!-- 종이 질감 레이어 -->
-        <div class="absolute inset-0 pointer-events-none z-[9999] opacity-[0.07]" 
+        <div class="absolute inset-0 pointer-events-none z-[9999] opacity-[0.06]" 
              style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise' baseFrequency=\'0.8' numOctaves=\'3' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E')">
         </div>
 
         <!-- 1. 히어로 섹션 -->
-        <section class="relative flex flex-col items-center bg-white border-b border-stone-100">
+        <section class="relative flex flex-col items-center bg-white border-Stone-100">
             <div class="w-full flex items-center justify-center overflow-hidden bg-stone-50">
                 <img src="./images/sample_main.jpg" alt="Main" class="w-full h-auto object-contain">
             </div>
-            <div class="z-10 text-center w-full py-12 bg-white/60 backdrop-blur-md">
+            <!-- 히어로 텍스트도 스르륵 나타나게 적용 -->
+            <div class="z-10 text-center w-full py-12 bg-white/60 backdrop-blur-md scroll-fade">
                 <h1 class="text-3xl md:text-4xl mb-6 tracking-widest flex items-center justify-center gap-3">
                     <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신랑</span> <span>이수달</span>
                     <span class="mx-4 opacity-10 font-thin text-4xl">|</span>
@@ -79,7 +89,7 @@
         <!-- 2. 초대글 및 가족 관계 -->
         <section class="scroll-fade py-20 px-10 text-center">
             <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-12 font-bold primary-color">The Invitation</p>
-            <p class="leading-[2.2] text-[17px] break-keep max-w-sm mx-auto mb-16 text-stone-700">
+            <p class="leading-[2.2] text-[17px] break-keep max-w-sm mx-auto mb-16 text-stone-700 text-center">
                 함께 있을 때 비로소<br> 
                 가장 나다운 모습이 되는 사람을 만났습니다.<br>
                 서로의 빈틈을 따뜻한 손길로 채워주며<br> 
@@ -88,7 +98,7 @@
                 귀한 걸음 하시어 축복해 주시면 감사하겠습니다.
             </p>
             
-            <div class="mt-8 space-y-5 text-stone-800 text-[21px]">
+            <div class="mt-8 space-y-5 text-stone-800 text-[21px] scroll-fade">
                 <div class="flex items-center justify-center gap-2">
                     <span>이조개 · 김미역</span>
                     <span class="opacity-40 text-base">의 아들</span>
@@ -104,12 +114,13 @@
             <div class="w-16 h-[1px] bg-stone-200 mx-auto mt-16"></div>
         </section>
 
-        <!-- 3. 스토리 섹션 -->
+        <!-- 3. 스토리 섹션 (문구와 사진들이 순차적으로 등장) -->
         <section class="py-10 space-y-12 overflow-hidden">
-            <div class="text-center mb-6">
+            <div class="text-center mb-6 scroll-fade">
                 <p class="text-[17px] opacity-60 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
             </div>
 
+            <!-- 사진 1 -->
             <div class="scroll-fade flex w-full px-8 justify-start">
                 <div class="relative w-[85%] animate-sway-left">
                     <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[2deg] z-50"></div>
@@ -118,6 +129,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 사진 2 -->
             <div class="scroll-fade flex w-full px-8 justify-end">
                 <div class="relative w-[85%] animate-sway-right">
                     <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-1.5deg] z-50"></div>
@@ -126,6 +138,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 사진 3 -->
             <div class="scroll-fade flex w-full px-8 justify-start">
                 <div class="relative w-[85%] animate-sway-left">
                     <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[3deg] z-50"></div>
@@ -134,6 +147,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 사진 4 -->
             <div class="scroll-fade flex w-full px-8 justify-end">
                 <div class="relative w-[85%] animate-sway-right">
                     <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-2deg] z-50"></div>
@@ -145,7 +159,7 @@
         </section>
 
         <!-- 4. 달력 -->
-        <section class="py-20 bg-stone-100/30 text-center border-y border-stone-100">
+        <section class="py-20 bg-stone-100/40 text-center border-y border-stone-100 scroll-fade">
             <h3 class="text-2xl font-bold tracking-[0.2em] mb-10 uppercase text-stone-800 serif text-center">January 2027</h3>
             <div class="max-w-[340px] mx-auto grid grid-cols-7 gap-y-4 gap-x-2 text-[15px] sans px-4 overflow-visible">
                 <div class="text-[#d9534f] font-bold text-[11px]">SUN</div>
@@ -193,82 +207,106 @@
                 <div class="text-[#d9534f] h-10 flex items-center justify-center">31</div>
             </div>
             
-            <div class="mt-12 text-center">
+            <div class="mt-12 text-center scroll-fade">
                 <div class="w-px h-12 bg-stone-200 mx-auto mb-6"></div>
                 <p class="text-sm opacity-50 mb-2 tracking-widest serif">결혼식까지 남은 시간</p>
-                <!-- 디데이 사이즈 축소: 6xl -> 5xl -->
                 <p id="d-day-text" class="text-5xl font-black italic tracking-tighter sans primary-color">D-DAY</p>
             </div>
         </section>
 
         <!-- 5. 갤러리 -->
-        <section class="py-20 px-4 bg-white text-center">
-            <!-- 갤러리 타이틀: 스타일 통일 및 간격 조정 -->
+        <section class="py-20 px-4 bg-white text-center scroll-fade">
             <h2 class="text-[17px] opacity-60 tracking-[1em] serif mb-10 text-center">갤 러 리</h2>
             <div class="grid grid-cols-3 gap-1.5 max-w-md mx-auto">
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery4.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+4'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery5.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+5'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery6.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+6'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery7.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+7'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery8.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+8'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery9.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+9'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery10.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+10'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery11.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+11'"></div>
-                <div class="aspect-square bg-stone-50 overflow-hidden"><img src="./images/sample_gallery12.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+12'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery4.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+4'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery5.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+5'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery6.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+6'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery7.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+7'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery8.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+8'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery9.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+9'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery10.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+10'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery11.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+11'"></div>
+                <div class="aspect-square bg-stone-50 overflow-hidden scroll-fade"><img src="./images/sample_gallery12.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+12'"></div>
             </div>
         </section>
 
         <!-- 6. 오시는 길 -->
-        <section class="py-20 px-8 text-center border-t border-stone-50 bg-white">
+        <section class="py-20 px-8 text-center border-t border-stone-50 bg-white scroll-fade">
             <p class="text-[12px] tracking-[0.5em] opacity-40 uppercase mb-8 font-bold primary-color sans">The Venue</p>
             <p class="text-2xl font-bold mb-4 text-stone-800">더채플앳논현 6F 라포레홀</p>
             <p class="text-stone-500 mb-12">서울 강남구 논현로 549</p>
-            <div class="aspect-video bg-stone-100 max-w-md mx-auto rounded-sm overflow-hidden flex flex-col items-center justify-center gap-4 text-stone-300 border border-stone-100">
+            <div class="aspect-video bg-stone-100 max-w-md mx-auto rounded-sm overflow-hidden flex flex-col items-center justify-center gap-4 text-stone-300 border border-stone-100 scroll-fade">
                  <i class="fa-solid fa-map-location-dot text-4xl opacity-50"></i>
                  <span class="text-[10px] font-bold uppercase tracking-[0.3em] sans">Map View Area</span>
             </div>
-            <div class="flex flex-col items-center gap-4 mt-12">
+            <div class="flex flex-col items-center gap-4 mt-12 scroll-fade">
                 <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="inline-block px-14 py-5 text-white text-[11px] font-bold tracking-[0.3em] uppercase rounded-sm shadow-xl sans primary-bg active:scale-95 transition-all">NAVER MAP</a>
             </div>
         </section>
 
         <!-- 7. 마음 전하실 곳 -->
-        <section class="pt-16 pb-10 px-8 bg-stone-100/30">
-            <h2 class="text-3xl font-bold mb-16 text-stone-800 text-center serif">마음 전하실 곳</h2>
+        <section class="pt-16 pb-10 px-8 bg-stone-100/40 scroll-fade">
+            <h2 class="text-2xl font-bold mb-12 text-stone-800 text-center serif">마음 전하실 곳</h2>
             <div class="max-w-md mx-auto space-y-10">
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-stone-100">
+                <!-- 신랑측 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-stone-100 scroll-fade">
                     <p class="font-bold mb-6 text-[18px] tracking-widest border-b border-stone-100 pb-4 text-center primary-color">신랑측 계좌번호</p>
                     <div class="space-y-5">
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Groom</span><span class="text-[16px] font-bold">이수달</span><span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Groom</span>
+                                <span class="text-[15px] font-bold">이수달</span>
+                                <span class="text-[12px] text-stone-500">우리은행 1002-123-456789</span>
+                            </div>
                             <button onclick="copyText('1002-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Father</span><span class="text-[16px] font-bold">이조개</span><span class="text-[13px] text-stone-500">농협은행 302-1234-5678-01</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Father</span>
+                                <span class="text-[15px] font-bold">이조개</span>
+                                <span class="text-[12px] text-stone-500">농협은행 302-1234-5678-01</span>
+                            </div>
                             <button onclick="copyText('302-1234-5678-01')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span><span class="text-[16px] font-bold">김미역</span><span class="text-[13px] text-stone-500">국민은행 123456-01-123456</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span>
+                                <span class="text-[15px] font-bold">김미역</span>
+                                <span class="text-[12px] text-stone-500">국민은행 123456-01-123456</span>
+                            </div>
                             <button onclick="copyText('123456-01-123456')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-stone-100">
-                    <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center primary-color">신부측 계좌번호</p>
+                <!-- 신부측 -->
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-stone-100 scroll-fade">
+                    <p class="font-bold mb-8 text-[18px] tracking-widest border-b border-stone-100 pb-4 text-center primary-color">신부측 계좌번호</p>
                     <div class="space-y-5">
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Bride</span><span class="text-[16px] font-bold">박해달</span><span class="text-[13px] text-stone-500">신한은행 110-123-456789</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Bride</span>
+                                <span class="text-[15px] font-bold">박해달</span>
+                                <span class="text-[12px] text-stone-500">신한은행 110-123-456789</span>
+                            </div>
                             <button onclick="copyText('110-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Father</span><span class="text-[16px] font-bold">박파도</span><span class="text-[13px] text-stone-500">기업은행 010-1234-5678</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Father</span>
+                                <span class="text-[15px] font-bold">박파도</span>
+                                <span class="text-[12px] text-stone-500">기업은행 010-1234-5678</span>
+                            </div>
                             <button onclick="copyText('010-1234-5678')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                         <div class="flex justify-between items-center text-left">
-                            <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span><span class="text-[16px] font-bold">최모래</span><span class="text-[13px] text-stone-500">카카오 3333-01-1234567</span></div>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] text-stone-300 font-bold uppercase tracking-tighter">Mother</span>
+                                <span class="text-[15px] font-bold">최모래</span>
+                                <span class="text-[12px] text-stone-500">카카오 3333-01-1234567</span>
+                            </div>
                             <button onclick="copyText('3333-01-1234567')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                         </div>
                     </div>
@@ -277,7 +315,7 @@
         </section>
 
         <!-- 8. 푸터 디자인 -->
-        <footer class="py-16 text-center bg-white border-t border-stone-100">
+        <footer class="py-16 text-center bg-white border-t border-stone-100 scroll-fade">
             <div class="max-w-xs mx-auto space-y-6">
                 <div class="space-y-1">
                     <p class="text-[11px] tracking-[0.8em] opacity-30 uppercase font-black sans text-center">OTTER'S LETTER</p>
@@ -298,13 +336,24 @@
     </div>
 
     <script>
+        // 스크롤 감지 및 애니메이션 실행 (고성능 Observer 사용)
+        const observerOptions = {
+            threshold: 0.15, // 요소가 15% 정도 보일 때 애니메이션 시작
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
+
+        // 모든 감지 대상을 관찰
         document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
+        // 계좌 복사 기능
         function copyText(text) {
             const tempInput = document.createElement('input');
             tempInput.value = text;
@@ -317,6 +366,7 @@
             setTimeout(() => { toast.style.opacity = '0'; }, 2000);
         }
 
+        // D-Day 계산
         const targetDate = new Date('2027-01-30T00:00:00');
         const updateDday = () => {
             const now = new Date();
