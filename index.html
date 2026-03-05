@@ -67,12 +67,22 @@
         .animate-sway-left { animation: swayLeft 5s ease-in-out infinite; }
         .animate-sway-right { animation: swayRight 5.5s ease-in-out infinite; }
 
-        /* 6. 음악 버튼 애니메이션 */
+        /* 6. 음악 버튼 애니메이션 및 반응형 위치 */
         @keyframes musicRotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         .music-playing { animation: musicRotate 6s linear infinite; }
+
+        /* 음악 버튼 반응형 대응: 모바일에서는 화면 끝에서 20px, PC에선 중앙 컨테이너 옆 */
+        #music-btn {
+            right: 20px;
+        }
+        @media (min-width: 540px) {
+            #music-btn {
+                right: calc(50% - 230px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -80,8 +90,8 @@
     <div class="mobile-container">
         
         <!-- 음악 버튼 -->
-        <button id="music-btn" class="fixed bottom-6 right-6 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg z-[10001] flex items-center justify-center text-[#4a5d4e] border border-gray-100 transition-all active:scale-90" 
-                style="right: calc(50% - 230px); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">
+        <button id="music-btn" class="fixed bottom-6 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg z-[10001] flex items-center justify-center text-[#4a5d4e] border border-gray-100 transition-all active:scale-90" 
+                style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">
             <i id="music-icon" class="fa-solid fa-music text-lg"></i>
         </button>
         <audio id="bgm" loop>
@@ -111,7 +121,8 @@
         <!-- 2. 초대글 및 가족 관계 -->
         <section class="scroll-fade py-20 px-10 text-center">
             <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-12 font-bold primary-color text-center">The Invitation</p>
-            <p class="leading-[2.4] text-[17px] break-keep max-w-sm mx-auto mb-16 text-gray-700 text-center">
+            <!-- [폰트 수정] 가독성과 디자인 밸런스를 위해 17px에서 16px로 축소 -->
+            <p class="leading-[2.4] text-[16px] break-keep max-w-sm mx-auto mb-16 text-gray-700 text-center">
                 함께 있을 때 비로소<br> 
                 가장 나다운 모습이 되는 사람을 만났습니다.<br>
                 서로의 빈틈을 따뜻한 손길로 채워주며<br> 
@@ -142,7 +153,6 @@
                 <p class="text-[17px] opacity-60 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
             </div>
 
-            <!-- 사진 1 -->
             <div class="scroll-fade flex w-full px-8 justify-start">
                 <div class="relative w-[85%] animate-sway-left">
                     <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[3deg] z-50"></div>
@@ -151,7 +161,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 사진 2 -->
             <div class="scroll-fade flex w-full px-8 justify-end">
                 <div class="relative w-[85%] animate-sway-right">
                     <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-1.5deg] z-50"></div>
@@ -160,7 +169,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 사진 3 -->
             <div class="scroll-fade flex w-full px-8 justify-start">
                 <div class="relative w-[85%] animate-sway-left">
                     <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[4deg] z-50"></div>
@@ -169,7 +177,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 사진 4 -->
             <div class="scroll-fade flex w-full px-8 justify-end">
                 <div class="relative w-[85%] animate-sway-right">
                     <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-2deg] z-50"></div>
@@ -239,7 +246,7 @@
         <!-- 5. 갤러리 -->
         <section class="py-20 px-4 bg-white text-center scroll-fade">
             <h2 class="text-[17px] opacity-60 tracking-[1em] serif mb-10 text-center">갤 러 리</h2>
-            <div class="grid grid-cols-3 gap-1.5 max-w-md mx-auto">
+            <div class="grid grid-cols-3 gap-1.5 max-md mx-auto">
                 <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
                 <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
                 <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
@@ -302,7 +309,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-gray-100 scroll-fade">
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-gray-200 scroll-fade">
                     <p class="font-bold mb-8 text-[18px] tracking-widest border-b border-gray-100 pb-4 text-center primary-color">신부측 계좌번호</p>
                     <div class="space-y-5">
                         <div class="flex justify-between items-center text-left">
