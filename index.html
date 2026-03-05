@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오또의 청첩장 | Otter's Letter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Gowun Batang', 'Noto Sans KR', serif; background-color: #fcfcfc; color: #1a1a1a; overflow-x: hidden; }
+        .serif { font-family: 'Gowun Batang', serif; }
+        .sans { font-family: 'Noto Sans KR', sans-serif; }
+        .scroll-fade { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+        .masking-tape {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            clip-path: polygon(2% 5%, 95% 0%, 100% 90%, 92% 100%, 8% 95%, 0% 85%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 종이 질감 레이어 -->
+    <div class="fixed inset-0 pointer-events-none z-[9999] opacity-[0.05]" 
+         style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E')">
+    </div>
+
+    <!-- 1. 히어로 섹션 -->
+    <section class="relative flex flex-col items-center bg-white border-b border-stone-100">
+        <div class="w-full h-[80vh] overflow-hidden bg-stone-100 flex items-center justify-center">
+            <img src="./images/sample_main.jpg" alt="Main" class="w-full h-full object-cover">
+        </div>
+        <div class="z-10 text-center w-full py-16 bg-white/60 backdrop-blur-md">
+            <p class="tracking-[1em] text-[10px] mb-6 font-bold text-stone-400 uppercase sans">Save the Date</p>
+            <h1 class="text-3xl md:text-4xl mb-8 tracking-widest flex items-center justify-center gap-3">
+                <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신랑</span> <span>이수달</span>
+                <span class="mx-4 opacity-10 font-thin text-4xl">|</span>
+                <span class="opacity-40 text-xs font-bold border-b border-stone-200 pb-1">신부</span> <span>박해달</span>
+            </h1>
+            <p class="text-xl font-bold tracking-[0.2em] sans text-[#4a5d4e]">2027 . 01 . 30 . SAT . 12:30</p>
+        </div>
+    </section>
+
+    <!-- 2. 초대글 -->
+    <section class="scroll-fade py-32 px-10 text-center">
+        <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-16 font-bold text-[#4a5d4e]">The Invitation</p>
+        <p class="leading-[2.8] text-[18px] break-keep max-w-sm mx-auto mb-20 text-stone-700">
+            함께 있을 때 비로소 가장 나다운 모습이 되는 사람을 만났습니다.<br><br>
+            서로의 빈틈을 따뜻한 손길로 채워주며 함께 걷는 모든 길에 사랑을 심으려 합니다.<br><br>
+            저희 두 사람이 하나가 되는 소중한 날, 귀한 걸음 하시어 축복해 주시면 감사하겠습니다.
+        </p>
+        <div class="w-20 h-[1px] bg-stone-200 mx-auto"></div>
+    </section>
+
+    <!-- 3. 스토리 섹션 (폴라로이드 & 마스킹 테이프) -->
+    <section class="py-10 space-y-32">
+        <!-- 사진 1 -->
+        <div class="scroll-fade flex w-full px-8 justify-start">
+            <div class="relative w-[75%] sm:w-[60%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-24 h-8 z-30 rotate-[-2deg]"></div>
+                <div class="shadow-2xl bg-white p-3 pb-12 rotate-[-2deg]">
+                    <div class="aspect-[4/5] bg-stone-100 overflow-hidden">
+                        <img src="./images/sample_story1.png" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 사진 2 -->
+        <div class="scroll-fade flex w-full px-8 justify-end">
+            <div class="relative w-[75%] sm:w-[60%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-24 h-8 z-30 rotate-[1.5deg]"></div>
+                <div class="shadow-2xl bg-white p-3 pb-12 rotate-[2deg]">
+                    <div class="aspect-[4/5] bg-stone-100 overflow-hidden">
+                        <img src="./images/sample_story2.png" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 사진 3 -->
+        <div class="scroll-fade flex w-full px-8 justify-start">
+            <div class="relative w-[75%] sm:w-[60%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-24 h-8 z-30 rotate-[-1deg]"></div>
+                <div class="shadow-2xl bg-white p-3 pb-12 rotate-[-1.5deg]">
+                    <div class="aspect-[4/5] bg-stone-100 overflow-hidden">
+                        <img src="./images/sample_story3.png" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 사진 4 -->
+        <div class="scroll-fade flex w-full px-8 justify-end">
+            <div class="relative w-[75%] sm:w-[60%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-24 h-8 z-30 rotate-[2deg]"></div>
+                <div class="shadow-2xl bg-white p-3 pb-12 rotate-[3deg]">
+                    <div class="aspect-[4/5] bg-stone-100 overflow-hidden">
+                        <img src="./images/sample_story4.png" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 달력 -->
+    <section class="py-32 bg-stone-100/30 text-center border-y border-stone-100">
+        <h3 class="text-2xl font-bold tracking-[0.3em] mb-16 uppercase text-stone-800 sans">January 2027</h3>
+        <div class="max-w-sm mx-auto grid grid-cols-7 gap-y-10 text-[15px] sans px-6">
+            <div class="text-[#d9534f] font-bold text-[11px]">SUN</div>
+            <div class="opacity-40 font-bold text-[11px]">MON</div>
+            <div class="opacity-40 font-bold text-[11px]">TUE</div>
+            <div class="opacity-40 font-bold text-[11px]">WED</div>
+            <div class="opacity-40 font-bold text-[11px]">THU</div>
+            <div class="opacity-40 font-bold text-[11px]">FRI</div>
+            <div class="text-[#5bc0de] font-bold text-[11px]">SAT</div>
+            <!-- 날짜 생략 (예시) -->
+            <div class="col-start-6 h-12 flex items-center justify-center opacity-70">1</div>
+            <div class="h-12 flex items-center justify-center opacity-70">2</div>
+            <div class="h-12 flex items-center justify-center opacity-70">3</div>
+            <!-- ... 중략 ... -->
+            <div class="col-start-7 relative flex items-center justify-center h-12">
+                <i class="fa-solid fa-heart text-[#4a5d4e] text-3xl opacity-80"></i>
+                <span class="absolute text-white text-[10px] font-bold pb-0.5">30</span>
+            </div>
+        </div>
+        <div class="mt-32">
+            <div class="w-px h-16 bg-stone-200 mx-auto mb-10"></div>
+            <p class="text-xl font-bold mb-3 tracking-widest text-stone-800 sans">2027.01.30</p>
+            <p class="text-6xl font-black italic tracking-tighter sans text-[#4a5d4e]">D-DAY</p>
+        </div>
+    </section>
+
+    <!-- 5. 마음 전하실 곳 -->
+    <section class="pt-32 pb-10 px-8 bg-stone-100/30">
+        <h2 class="text-3xl font-bold mb-20 text-stone-800 text-center">마음 전하실 곳</h2>
+        <div class="max-w-md mx-auto space-y-12">
+            <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
+                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신랑측 계좌번호</p>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center"><div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">GROOM</span><span class="text-[16px] font-bold">이수달</span><span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span></div><button class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm">COPY</button></div>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
+                <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신부측 계좌번호</p>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center"><div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">BRIDE</span><span class="text-[16px] font-bold">박해달</span><span class="text-[13px] text-stone-500">신한은행 110-123-456789</span></div><button class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm">COPY</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="py-20 text-center bg-white border-t border-stone-100">
+        <p class="text-[11px] tracking-[1.2em] opacity-30 uppercase font-black mb-1 sans">Otter's Letter</p>
+        <p class="text-[14px] font-bold text-stone-300 mb-8 tracking-widest">오또의 청첩장</p>
+        <p class="text-[12px] opacity-40 font-bold text-stone-500 tracking-[0.5em]">@오또의 청첩장</p>
+    </footer>
+
+    <script>
+        // 스크롤 애니메이션 스크립트
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
