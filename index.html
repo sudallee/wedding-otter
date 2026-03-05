@@ -14,13 +14,14 @@
         .scroll-fade { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-fade.visible { opacity: 1; transform: translateY(0); }
         
+        /* 마스킹 테이프: 레이어 최상단 고정 및 디자인 */
         .masking-tape {
-            background-color: rgba(253, 245, 210, 0.9);
+            background-color: rgba(253, 245, 210, 0.95);
             backdrop-filter: blur(1.5px);
-            border: 1px solid rgba(230, 220, 180, 0.5);
+            border: 1px solid rgba(230, 220, 180, 0.6);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             clip-path: polygon(2% 5%, 95% 0%, 100% 90%, 92% 100%, 8% 95%, 0% 85%);
-            z-index: 50;
+            z-index: 100; /* 어떠한 요소보다도 위에 오도록 높은 값 설정 */
         }
         .primary-color { color: #4a5d4e; }
         .primary-bg { background-color: #4a5d4e; }
@@ -73,39 +74,44 @@
         <div class="w-20 h-[1px] bg-stone-200 mx-auto mt-20"></div>
     </section>
 
-    <!-- 3. 스토리 섹션 -->
+    <!-- 3. 스토리 섹션 (테이프 레이어링 수정 완료) -->
     <section class="py-10 space-y-20 overflow-hidden">
         <div class="text-center mb-10">
             <p class="text-[13px] opacity-50 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
         </div>
 
+        <!-- 사진 1 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-2deg]"></div>
+                <!-- 테이프를 z-50으로 명시하여 사진 위로 강제 고정 -->
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-2deg] z-50"></div>
                 <div class="drop-shadow-2xl rotate-[-2deg] relative z-10">
                     <img src="./images/sample_story1.png" class="w-full h-auto block" alt="Story 1">
                 </div>
             </div>
         </div>
+        <!-- 사진 2 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[1.5deg]"></div>
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[1.5deg] z-50"></div>
                 <div class="drop-shadow-2xl rotate-[2.5deg] relative z-10">
                     <img src="./images/sample_story2.png" class="w-full h-auto block" alt="Story 2">
                 </div>
             </div>
         </div>
+        <!-- 사진 3 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-1deg]"></div>
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[-1deg] z-50"></div>
                 <div class="drop-shadow-2xl rotate-[-1.5deg] relative z-10">
                     <img src="./images/sample_story3.png" class="w-full h-auto block" alt="Story 3">
                 </div>
             </div>
         </div>
+        <!-- 사진 4 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
             <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[2deg]"></div>
+                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 rotate-[2deg] z-50"></div>
                 <div class="drop-shadow-2xl rotate-[3deg] relative z-10">
                     <img src="./images/sample_story4.png" class="w-full h-auto block" alt="Story 4">
                 </div>
@@ -113,10 +119,10 @@
         </div>
     </section>
 
-    <!-- 4. 달력 -->
+    <!-- 4. 달력 (하트 짤림 현상 수정 완료) -->
     <section class="py-32 bg-stone-100/30 text-center border-y border-stone-100">
         <h3 class="text-2xl font-bold tracking-[0.2em] mb-16 uppercase text-stone-800 serif text-center">January 2027</h3>
-        <div class="max-w-[340px] mx-auto grid grid-cols-7 gap-y-8 gap-x-2 text-[15px] sans px-4">
+        <div class="max-w-[340px] mx-auto grid grid-cols-7 gap-y-8 gap-x-2 text-[15px] sans px-4 overflow-visible">
             <div class="text-[#d9534f] font-bold text-[11px]">SUN</div>
             <div class="opacity-40 font-bold text-[11px]">MON</div>
             <div class="opacity-40 font-bold text-[11px]">TUE</div>
@@ -154,9 +160,11 @@
             <div class="h-10 flex items-center justify-center opacity-60">27</div>
             <div class="h-10 flex items-center justify-center opacity-60">28</div>
             <div class="h-10 flex items-center justify-center opacity-60">29</div>
-            <div class="relative flex items-center justify-center h-10 w-10 mx-auto">
-                <i class="fa-solid fa-heart primary-color text-4xl opacity-85 scale-110"></i>
-                <span class="absolute text-white text-[15px] font-bold pb-0.5">30</span>
+            
+            <!-- 결혼 날짜: 하트 사이즈를 살짝 줄여 짤림 방지 및 정중앙 배치 -->
+            <div class="relative flex items-center justify-center h-10 w-10 mx-auto overflow-visible">
+                <i class="fa-solid fa-heart primary-color text-[36px] opacity-85 translate-x-[1px]"></i>
+                <span class="absolute text-white text-[14px] font-bold pb-0.5">30</span>
             </div>
             <div class="text-[#d9534f] h-10 flex items-center justify-center">31</div>
         </div>
@@ -242,7 +250,7 @@
         </div>
     </section>
 
-    <!-- 8. 새로운 푸터 디자인 (© 기호 및 문구 업데이트) -->
+    <!-- 8. 푸터 디자인 -->
     <footer class="py-24 text-center bg-white border-t border-stone-100">
         <div class="max-w-xs mx-auto space-y-6">
             <div class="space-y-1">
