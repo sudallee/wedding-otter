@@ -13,11 +13,13 @@
         .sans { font-family: 'Noto Sans KR', sans-serif; }
         .scroll-fade { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+        
+        /* 마스킹 테이프 시인성 강화 */
         .masking-tape {
-            background-color: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1.5px);
+            border: 1px solid rgba(200, 200, 200, 0.3);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
             clip-path: polygon(2% 5%, 95% 0%, 100% 90%, 92% 100%, 8% 95%, 0% 85%);
         }
     </style>
@@ -26,13 +28,14 @@
 
     <!-- 종이 질감 레이어 -->
     <div class="fixed inset-0 pointer-events-none z-[9999] opacity-[0.05]" 
-         style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E')">
+         style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise' baseFrequency=\'0.8' numOctaves=\'3' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E')">
     </div>
 
-    <!-- 1. 히어로 섹션 (사진 잘림 방지) -->
+    <!-- 1. 히어로 섹션 -->
     <section class="relative flex flex-col items-center bg-white border-b border-stone-100">
         <div class="w-full flex items-center justify-center overflow-hidden bg-stone-50">
-            <img src="./images/sample_main.jpg" alt="Main" class="w-full h-auto max-h-[85vh] object-contain">
+            <!-- 메인 사진 잘림 방지: 가로 꽉 차게 혹은 비율 유지 -->
+            <img src="./images/sample_main.jpg" alt="Main" class="w-full h-auto max-h-[80vh] object-contain">
         </div>
         <div class="z-10 text-center w-full py-16 bg-white/60 backdrop-blur-md">
             <p class="tracking-[1em] text-[10px] mb-6 font-bold text-stone-400 uppercase sans">Save the Date</p>
@@ -45,7 +48,7 @@
         </div>
     </section>
 
-    <!-- 2. 초대글 -->
+    <!-- 2. 초대글 및 가족 관계 -->
     <section class="scroll-fade py-32 px-10 text-center">
         <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-16 font-bold text-[#4a5d4e]">The Invitation</p>
         <p class="leading-[2.8] text-[18px] break-keep max-w-sm mx-auto mb-20 text-stone-700">
@@ -53,62 +56,78 @@
             서로의 빈틈을 따뜻한 손길로 채워주며 함께 걷는 모든 길에 사랑을 심으려 합니다.<br><br>
             저희 두 사람이 하나가 되는 소중한 날, 귀한 걸음 하시어 축복해 주시면 감사하겠습니다.
         </p>
-        <div class="w-20 h-[1px] bg-stone-200 mx-auto"></div>
+        
+        <!-- 부모님 성함 및 서열 추가 -->
+        <div class="mt-10 space-y-4 text-stone-800 text-[17px]">
+            <div class="flex items-center justify-center gap-2">
+                <span>이조개 · 김미역</span>
+                <span class="opacity-40 text-sm">의 아들</span>
+                <span class="font-bold">수달</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <span>박파도 · 최모래</span>
+                <span class="opacity-40 text-sm">의 딸</span>
+                <span class="font-bold">해달</span>
+            </div>
+        </div>
+        
+        <div class="w-20 h-[1px] bg-stone-200 mx-auto mt-20"></div>
     </section>
 
-    <!-- 3. 스토리 섹션 (프레임 제거 및 사진 본연의 사이즈 강조) -->
+    <!-- 3. 스토리 섹션 (프레임 제거: 원본 둥근 모양 그대로 노출) -->
     <section class="py-10 space-y-32 overflow-hidden">
         <!-- 사진 1 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
-            <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-2deg]"></div>
-                <div class="shadow-xl overflow-hidden rotate-[-2deg]">
+            <div class="relative w-[85%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-2deg]"></div>
+                <!-- shadow만 주되 원본 모양 유지하도록 overflow 제거 -->
+                <div class="drop-shadow-2xl rotate-[-2deg]">
                     <img src="./images/sample_story1.png" class="w-full h-auto block" alt="Story 1">
                 </div>
             </div>
         </div>
         <!-- 사진 2 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
-            <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[1.5deg]"></div>
-                <div class="shadow-xl overflow-hidden rotate-[2.5deg]">
+            <div class="relative w-[85%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[1.5deg]"></div>
+                <div class="drop-shadow-2xl rotate-[2.5deg]">
                     <img src="./images/sample_story2.png" class="w-full h-auto block" alt="Story 2">
                 </div>
             </div>
         </div>
         <!-- 사진 3 -->
         <div class="scroll-fade flex w-full px-8 justify-start">
-            <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-1deg]"></div>
-                <div class="shadow-xl overflow-hidden rotate-[-1.5deg]">
+            <div class="relative w-[85%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[-1deg]"></div>
+                <div class="drop-shadow-2xl rotate-[-1.5deg]">
                     <img src="./images/sample_story3.png" class="w-full h-auto block" alt="Story 3">
                 </div>
             </div>
         </div>
         <!-- 사진 4 -->
         <div class="scroll-fade flex w-full px-8 justify-end">
-            <div class="relative w-[80%] sm:w-[55%]">
-                <div class="masking-tape absolute top-[-10px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[2deg]"></div>
-                <div class="shadow-xl overflow-hidden rotate-[3deg]">
+            <div class="relative w-[85%] sm:w-[55%]">
+                <div class="masking-tape absolute top-[-15px] left-1/2 -translate-x-1/2 w-28 h-9 z-30 rotate-[2deg]"></div>
+                <div class="drop-shadow-2xl rotate-[3deg]">
                     <img src="./images/sample_story4.png" class="w-full h-auto block" alt="Story 4">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. 달력 (모든 날짜 복구) -->
+    <!-- 4. 달력 (가독성 및 간격 최적화) -->
     <section class="py-32 bg-stone-100/30 text-center border-y border-stone-100">
         <h3 class="text-2xl font-bold tracking-[0.3em] mb-16 uppercase text-stone-800 sans">January 2027</h3>
-        <div class="max-w-sm mx-auto grid grid-cols-7 gap-y-6 text-[14px] sans px-6">
-            <div class="text-[#d9534f] font-bold text-[11px] mb-4">SUN</div>
-            <div class="opacity-40 font-bold text-[11px] mb-4">MON</div>
-            <div class="opacity-40 font-bold text-[11px] mb-4">TUE</div>
-            <div class="opacity-40 font-bold text-[11px] mb-4">WED</div>
-            <div class="opacity-40 font-bold text-[11px] mb-4">THU</div>
-            <div class="opacity-40 font-bold text-[11px] mb-4">FRI</div>
-            <div class="text-[#5bc0de] font-bold text-[11px] mb-4">SAT</div>
+        <!-- 모바일 가독성을 위해 gap 조정 -->
+        <div class="max-w-[340px] mx-auto grid grid-cols-7 gap-y-8 gap-x-2 text-[15px] sans px-4">
+            <div class="text-[#d9534f] font-bold text-[11px]">SUN</div>
+            <div class="opacity-40 font-bold text-[11px]">MON</div>
+            <div class="opacity-40 font-bold text-[11px]">TUE</div>
+            <div class="opacity-40 font-bold text-[11px]">WED</div>
+            <div class="opacity-40 font-bold text-[11px]">THU</div>
+            <div class="opacity-40 font-bold text-[11px]">FRI</div>
+            <div class="text-[#5bc0de] font-bold text-[11px]">SAT</div>
             
-            <!-- Jan 2027 시작 (1일 금요일) -->
             <div class="col-start-6 h-10 flex items-center justify-center opacity-60">1</div>
             <div class="h-10 flex items-center justify-center text-[#5bc0de]">2</div>
             
@@ -143,7 +162,6 @@
             <div class="h-10 flex items-center justify-center opacity-60">28</div>
             <div class="h-10 flex items-center justify-center opacity-60">29</div>
             
-            <!-- 결혼식 당일 (30일 토요일) -->
             <div class="relative flex items-center justify-center h-10">
                 <i class="fa-solid fa-heart text-[#4a5d4e] text-3xl opacity-80"></i>
                 <span class="absolute text-white text-[10px] font-bold pb-0.5">30</span>
@@ -157,33 +175,45 @@
         </div>
     </section>
 
-    <!-- 5. 마음 전하실 곳 -->
+    <!-- 5. 마음 전하실 곳 (전체 복구) -->
     <section class="pt-32 pb-10 px-8 bg-stone-100/30">
         <h2 class="text-3xl font-bold mb-20 text-stone-800 text-center">마음 전하실 곳</h2>
         <div class="max-w-md mx-auto space-y-12">
+            
+            <!-- 신랑측 -->
             <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
                 <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신랑측 계좌번호</p>
                 <div class="space-y-6">
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-stone-300 font-bold">GROOM</span>
-                            <span class="text-[16px] font-bold">이수달</span>
-                            <span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span>
-                        </div>
-                        <button onclick="copyText('1002-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95 transition-transform">COPY</button>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">GROOM</span><span class="text-[16px] font-bold">이수달</span><span class="text-[13px] text-stone-500">우리은행 1002-123-456789</span></div>
+                        <button onclick="copyText('1002-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                    </div>
+                    <div class="flex justify-between items-center text-left">
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Father</span><span class="text-[16px] font-bold">이조개</span><span class="text-[13px] text-stone-500">농협은행 302-1234-5678</span></div>
+                        <button onclick="copyText('302-1234-5678')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                    </div>
+                    <div class="flex justify-between items-center text-left">
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Mother</span><span class="text-[16px] font-bold">김미역</span><span class="text-[13px] text-stone-500">국민은행 123456-01-1234</span></div>
+                        <button onclick="copyText('123456-01-1234')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                 </div>
             </div>
+
+            <!-- 신부측 -->
             <div class="bg-white p-10 rounded-sm shadow-sm border border-stone-100">
                 <p class="font-bold mb-8 text-[20px] tracking-widest border-b border-stone-100 pb-4 text-center text-[#4a5d4e]">신부측 계좌번호</p>
                 <div class="space-y-6">
                     <div class="flex justify-between items-center text-left">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-stone-300 font-bold">BRIDE</span>
-                            <span class="text-[16px] font-bold">박해달</span>
-                            <span class="text-[13px] text-stone-500">신한은행 110-123-456789</span>
-                        </div>
-                        <button onclick="copyText('110-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95 transition-transform">COPY</button>
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold">BRIDE</span><span class="text-[16px] font-bold">박해달</span><span class="text-[13px] text-stone-500">신한은행 110-123-456789</span></div>
+                        <button onclick="copyText('110-123-456789')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                    </div>
+                    <div class="flex justify-between items-center text-left">
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Father</span><span class="text-[16px] font-bold">박파도</span><span class="text-[13px] text-stone-500">기업은행 010-1234-5678</span></div>
+                        <button onclick="copyText('010-1234-5678')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
+                    </div>
+                    <div class="flex justify-between items-center text-left">
+                        <div class="flex flex-col"><span class="text-[10px] text-stone-300 font-bold uppercase">Mother</span><span class="text-[16px] font-bold">최모래</span><span class="text-[13px] text-stone-500">카카오 3333-01-12345</span></div>
+                        <button onclick="copyText('3333-01-12345')" class="text-[10px] text-stone-400 border border-stone-100 px-3 py-2 rounded-sm active:scale-95">COPY</button>
                     </div>
                 </div>
             </div>
@@ -197,20 +227,16 @@
         <p class="text-[12px] opacity-40 font-bold text-stone-500 tracking-[0.5em]">@오또의 청첩장</p>
     </footer>
 
-    <!-- 복사 성공 알림 메시지 상자 -->
     <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-stone-800 text-white px-8 py-3 rounded-full text-xs tracking-widest opacity-0 transition-opacity pointer-events-none z-[10000]">계좌번호가 복사되었습니다.</div>
 
     <script>
-        // 스크롤 애니메이션
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
         document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
-        // 계좌 복사 기능
         function copyText(text) {
             const tempInput = document.createElement('input');
             tempInput.value = text;
@@ -218,18 +244,19 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            
             const toast = document.getElementById('toast');
             toast.style.opacity = '1';
             setTimeout(() => { toast.style.opacity = '0'; }, 2000);
         }
 
-        // D-Day 계산
         const targetDate = new Date('2027-01-30T00:00:00');
-        const today = new Date();
-        const diff = targetDate - today;
-        const dDay = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        document.getElementById('d-day-text').innerText = dDay > 0 ? `D-${dDay}` : (dDay === 0 ? 'D-DAY' : `D+${Math.abs(dDay)}`);
+        const updateDday = () => {
+            const now = new Date();
+            const diff = targetDate - now;
+            const dDay = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('d-day-text').innerText = dDay > 0 ? `D-${dDay}` : (dDay === 0 ? 'D-DAY' : `D+${Math.abs(dDay)}`);
+        }
+        updateDday();
     </script>
 </body>
 </html>
