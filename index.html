@@ -83,6 +83,67 @@
                 right: calc(50% - 230px);
             }
         }
+
+        /* 7. 이미지 뷰어 (Lightbox) 스타일 */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 20000;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 2.5rem;
+            cursor: pointer;
+            padding: 20px;
+            transition: color 0.3s ease;
+        }
+        .lightbox-btn:hover { color: #333; }
+        #prev-btn { left: 10px; }
+        #next-btn { right: 10px; }
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        #close-btn:hover { color: #333; }
+        #lightbox-counter {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 13px;
+            letter-spacing: 0.5em;
+            color: #888;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -121,7 +182,6 @@
         <!-- 2. 초대글 및 가족 관계 -->
         <section class="scroll-fade py-20 px-10 text-center">
             <p class="text-[12px] tracking-[0.6em] opacity-40 uppercase mb-12 font-bold primary-color text-center">The Invitation</p>
-            <!-- [폰트 수정] 가독성과 디자인 밸런스를 위해 17px에서 16px로 축소 -->
             <p class="leading-[2.4] text-[16px] break-keep max-w-sm mx-auto mb-16 text-gray-700 text-center">
                 함께 있을 때 비로소<br> 
                 가장 나다운 모습이 되는 사람을 만났습니다.<br>
@@ -247,31 +307,30 @@
         <section class="py-20 px-4 bg-white text-center scroll-fade">
             <h2 class="text-[17px] opacity-60 tracking-[1em] serif mb-10 text-center">갤 러 리</h2>
             <div class="grid grid-cols-3 gap-1.5 max-md mx-auto">
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery4.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+4'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery5.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+5'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery6.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+6'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery7.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+7'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery8.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+8'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery9.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+9'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery10.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+10'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery11.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+11'"></div>
-                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade"><img src="./images/sample_gallery12.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+12'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(0)"><img src="./images/sample_gallery1.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+1'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(1)"><img src="./images/sample_gallery2.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+2'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(2)"><img src="./images/sample_gallery3.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+3'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(3)"><img src="./images/sample_gallery4.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+4'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(4)"><img src="./images/sample_gallery5.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+5'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(5)"><img src="./images/sample_gallery6.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+6'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(6)"><img src="./images/sample_gallery7.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+7'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(7)"><img src="./images/sample_gallery8.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+8'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(8)"><img src="./images/sample_gallery9.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+9'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(9)"><img src="./images/sample_gallery10.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+10'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(10)"><img src="./images/sample_gallery11.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+11'"></div>
+                <div class="aspect-square bg-gray-100 overflow-hidden scroll-fade cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(11)"><img src="./images/sample_gallery12.jpg" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x600?text=PHOTO+12'"></div>
             </div>
         </section>
 
-        <!-- 6. 오시는 길 (고정된 지도 이미지로 변경 및 이미지 클릭 시 네이버 지도로 이동) -->
+        <!-- 6. 오시는 길 -->
         <section class="py-20 px-8 text-center border-t border-gray-200 bg-white scroll-fade">
             <p class="text-[12px] tracking-[0.5em] opacity-40 uppercase mb-8 font-bold primary-color sans text-center">The Venue</p>
             <p class="text-2xl font-bold mb-4 text-gray-800 text-center">더채플앳논현 6F 라포레홀</p>
             <p class="text-gray-500 mb-12 text-center">서울 강남구 논현로 549</p>
             
-            <!-- 구글맵 대신 고정된 네이버 지도 캡처 이미지 (링크 감싸기) -->
-            <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="block aspect-video bg-gray-100 max-w-md mx-auto rounded-sm overflow-hidden border border-gray-200 scroll-fade relative active:scale-[0.98] transition-transform">
+            <div class="aspect-video bg-gray-100 max-w-md mx-auto rounded-sm overflow-hidden border border-gray-200 scroll-fade relative">
                 <img src="./images/naver_map.jpg" alt="오시는 길 지도" class="w-full h-full object-cover" onerror="this.src='./images/naver_map.png'">
-            </a>
+            </div>
 
             <div class="flex flex-col items-center gap-4 mt-12 scroll-fade">
                 <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="inline-block px-14 py-5 text-white text-[11px] font-bold tracking-[0.3em] uppercase rounded-sm shadow-xl sans primary-bg active:scale-95 transition-all">NAVER MAP</a>
@@ -360,9 +419,21 @@
 
         <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-8 py-3 rounded-full text-xs tracking-widest opacity-0 transition-opacity pointer-events-none z-[10000]">계좌번호가 복사되었습니다.</div>
 
+        <!-- 9. 이미지 뷰어 (Lightbox) UI -->
+        <div id="lightbox" class="flex flex-col items-center justify-center">
+            <button id="close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+            <button id="prev-btn" class="lightbox-btn" onclick="prevImage(event)"><i class="fa-solid fa-chevron-left"></i></button>
+            
+            <img id="lightbox-img" class="lightbox-img" src="" alt="Gallery Image">
+            <div id="lightbox-counter">1 / 12</div>
+            
+            <button id="next-btn" class="lightbox-btn" onclick="nextImage(event)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
     </div>
 
     <script>
+        // 음악 관련 스크립트
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
         const bgm = document.getElementById('bgm');
@@ -385,6 +456,7 @@
 
         musicBtn.addEventListener('click', toggleMusic);
 
+        // 스크롤 애니메이션 옵저버
         const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -393,6 +465,7 @@
         }, observerOptions);
         document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
 
+        // 복사 기능
         function copyText(text) {
             const tempInput = document.createElement('input');
             tempInput.value = text;
@@ -405,6 +478,7 @@
             setTimeout(() => { toast.style.opacity = '0'; }, 2000);
         }
 
+        // 디데이 계산
         const targetDate = new Date('2027-01-30T00:00:00');
         const updateDday = () => {
             const now = new Date();
@@ -413,6 +487,54 @@
             document.getElementById('d-day-text').innerText = dDay > 0 ? `D-${dDay}` : (dDay === 0 ? 'D-DAY' : `D+${Math.abs(dDay)}`);
         }
         updateDday();
+
+        // 갤러리 이미지 뷰어 (Lightbox) 기능
+        const images = [
+            './images/sample_gallery1.jpg', './images/sample_gallery2.jpg', './images/sample_gallery3.jpg',
+            './images/sample_gallery4.jpg', './images/sample_gallery5.jpg', './images/sample_gallery6.jpg',
+            './images/sample_gallery7.jpg', './images/sample_gallery8.jpg', './images/sample_gallery9.jpg',
+            './images/sample_gallery10.jpg', './images/sample_gallery11.jpg', './images/sample_gallery12.jpg'
+        ];
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        function updateLightboxImage() {
+            lightboxImg.src = images[currentIndex];
+            lightboxCounter.innerText = `${currentIndex + 1} / 12`;
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 배경 스크롤 복구
+        }
+
+        function prevImage(e) {
+            e.stopPropagation(); // 클릭 이벤트 버블링 방지
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateLightboxImage();
+        }
+
+        function nextImage(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateLightboxImage();
+        }
+
+        // 배경(이미지 바깥 영역) 클릭 시 닫기
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox || e.target === lightboxImg) {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
