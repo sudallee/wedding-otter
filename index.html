@@ -334,6 +334,7 @@
             <p class="text-2xl font-bold mb-4 text-gray-800 text-center">더채플앳논현 6F 라포레홀</p>
             <p class="text-gray-500 mb-12 text-center">서울 강남구 논현로 549</p>
             
+            <!-- 지도 이미지를 클릭하면 네이버 지도로 바로 연결됩니다! -->
             <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="block aspect-video bg-gray-100 max-w-md mx-auto rounded-sm overflow-hidden border border-gray-200 scroll-fade relative active:scale-[0.98] transition-transform">
                 <img src="./images/naver_map.jpg" alt="오시는 길 지도" class="w-full h-full object-cover" onerror="this.src='./images/naver_map.png'">
             </a>
@@ -348,7 +349,7 @@
             <h2 class="text-2xl font-bold mb-12 text-gray-800 text-center serif">마음 전하실 곳</h2>
             <div class="max-w-md mx-auto space-y-10">
                 <div class="bg-white p-8 rounded-sm shadow-sm border border-gray-200 scroll-fade">
-                    <p class="font-bold mb-6 text-[18px] tracking-widest border-b border-gray-100 pb-4 text-center primary-color">신랑측 계좌번호</p>
+                    <p class="font-bold mb-6 text-[18px] tracking-widest border-b border-gray-100 pb-4 text-center primary-color">신랑측 계좌번호 🤵🏻</p>
                     <div class="space-y-5">
                         <div class="flex justify-between items-center text-left">
                             <div class="flex flex-col">
@@ -377,7 +378,7 @@
                     </div>
                 </div>
                 <div class="bg-white p-8 rounded-sm shadow-sm border border-gray-200 scroll-fade">
-                    <p class="font-bold mb-8 text-[18px] tracking-widest border-b border-gray-100 pb-4 text-center primary-color">신부측 계좌번호</p>
+                    <p class="font-bold mb-8 text-[18px] tracking-widest border-b border-gray-100 pb-4 text-center primary-color">신부측 계좌번호 👰🏻</p>
                     <div class="space-y-5">
                         <div class="flex justify-between items-center text-left">
                             <div class="flex flex-col">
@@ -445,22 +446,48 @@
         const bgm = document.getElementById('bgm');
         let isPlaying = false;
 
+        function setPlayState() {
+            isPlaying = true;
+            musicIcon.classList.remove('fa-music');
+            musicIcon.classList.add('fa-pause');
+            musicBtn.classList.add('music-playing');
+        }
+
+        function setPauseState() {
+            isPlaying = false;
+            musicIcon.classList.remove('fa-pause');
+            musicIcon.classList.add('fa-music');
+            musicBtn.classList.remove('music-playing');
+        }
+
         function toggleMusic() {
             if (isPlaying) {
                 bgm.pause();
-                musicIcon.classList.remove('fa-pause');
-                musicIcon.classList.add('fa-music');
-                musicBtn.classList.remove('music-playing');
+                setPauseState();
             } else {
-                bgm.play().catch(e => console.log("재생 오류:", e));
-                musicIcon.classList.remove('fa-music');
-                musicIcon.classList.add('fa-pause');
-                musicBtn.classList.add('music-playing');
+                bgm.play().then(setPlayState).catch(e => console.log("재생 오류:", e));
             }
-            isPlaying = !isPlaying;
         }
 
         musicBtn.addEventListener('click', toggleMusic);
+
+        // 첫 스크롤이나 터치 시 자동으로 음악이 재생되도록 우회하는 마법의 코드!
+        const autoPlayMusic = () => {
+            if (!isPlaying) {
+                bgm.play().then(() => {
+                    setPlayState();
+                    // 성공적으로 재생되면 감지 이벤트 해제
+                    document.removeEventListener('click', autoPlayMusic);
+                    document.removeEventListener('touchstart', autoPlayMusic);
+                    document.removeEventListener('scroll', autoPlayMusic);
+                }).catch(e => console.log("자동 재생 대기 중..."));
+            }
+        };
+
+        // 브라우저 정책을 피해 사용자의 첫 액션에 음악 켜기
+        document.addEventListener('click', autoPlayMusic, { once: true });
+        document.addEventListener('touchstart', autoPlayMusic, { once: true });
+        document.addEventListener('scroll', autoPlayMusic, { once: true });
 
         // 스크롤 애니메이션 옵저버
         const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
