@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- 모바일 확대 방지 코드 추가 (maximum-scale=1.0, user-scalable=no) -->
+    <!-- 모바일 확대 방지 코드 (maximum-scale=1.0, user-scalable=no) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>오또의 청첩장 | Otter's Letter</title>
     <!-- 라이브러리 로드 -->
@@ -75,14 +75,9 @@
         }
         .music-playing { animation: musicRotate 6s linear infinite; }
 
-        /* 음악 버튼 반응형 대응: 모바일에서는 화면 끝에서 20px, PC에선 중앙 컨테이너 옆 */
-        #music-btn {
-            right: 20px;
-        }
+        #music-btn { right: 20px; }
         @media (min-width: 540px) {
-            #music-btn {
-                right: calc(50% - 230px);
-            }
+            #music-btn { right: calc(50% - 230px); }
         }
 
         /* 7. 이미지 뷰어 (Lightbox) 스타일 */
@@ -95,7 +90,7 @@
             backdrop-filter: blur(5px);
             opacity: 0;
             transition: opacity 0.3s ease;
-            touch-action: none; /* iOS/모바일 강제 확대 방지 */
+            touch-action: none; /* 모바일 강제 확대 방지 */
         }
         #lightbox.active {
             display: flex;
@@ -107,7 +102,7 @@
             object-fit: contain;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-radius: 4px;
-            pointer-events: none; /* 사진 자체의 터치 이벤트 차단하여 확대 방지 */
+            pointer-events: none; /* 사진 터치 이벤트 차단으로 확대 방지 */
         }
         .lightbox-btn {
             position: absolute;
@@ -213,7 +208,7 @@
             <div class="w-16 h-[1px] bg-gray-300 mx-auto mt-16"></div>
         </section>
 
-        <!-- 3. 스토리 섹션 (폴라로이드 4장 PNG로 변경) -->
+        <!-- 3. 스토리 섹션 (폴라로이드 4장 PNG 유지) -->
         <section class="py-10 space-y-12 overflow-hidden">
             <div class="text-center mb-6 scroll-fade">
                 <p class="text-[17px] opacity-60 tracking-[0.3em] serif">사랑이 눈에 보이는 순간</p>
@@ -334,7 +329,6 @@
             <p class="text-2xl font-bold mb-4 text-gray-800 text-center">더채플앳논현 6F 라포레홀</p>
             <p class="text-gray-500 mb-12 text-center">서울 강남구 논현로 549</p>
             
-            <!-- 지도 이미지를 클릭하면 네이버 지도로 바로 연결됩니다! -->
             <a href="https://map.naver.com/v5/search/더채플앳논현" target="_blank" class="block aspect-video bg-gray-100 max-w-md mx-auto rounded-sm overflow-hidden border border-gray-200 scroll-fade relative active:scale-[0.98] transition-transform">
                 <img src="./images/naver_map.jpg" alt="오시는 길 지도" class="w-full h-full object-cover" onerror="this.src='./images/naver_map.png'">
             </a>
@@ -471,12 +465,11 @@
 
         musicBtn.addEventListener('click', toggleMusic);
 
-        // 첫 스크롤이나 터치 시 자동으로 음악이 재생되도록 우회하는 마법의 코드!
+        // 첫 스크롤이나 터치 시 자동으로 음악이 재생되도록 우회
         const autoPlayMusic = () => {
             if (!isPlaying) {
                 bgm.play().then(() => {
                     setPlayState();
-                    // 성공적으로 재생되면 감지 이벤트 해제
                     document.removeEventListener('click', autoPlayMusic);
                     document.removeEventListener('touchstart', autoPlayMusic);
                     document.removeEventListener('scroll', autoPlayMusic);
@@ -484,7 +477,6 @@
             }
         };
 
-        // 브라우저 정책을 피해 사용자의 첫 액션에 음악 켜기
         document.addEventListener('click', autoPlayMusic, { once: true });
         document.addEventListener('touchstart', autoPlayMusic, { once: true });
         document.addEventListener('scroll', autoPlayMusic, { once: true });
@@ -542,16 +534,16 @@
             currentIndex = index;
             updateLightboxImage();
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeLightbox() {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // 배경 스크롤 복구
+            document.body.style.overflow = 'auto'; 
         }
 
         function prevImage(e) {
-            e.stopPropagation(); // 클릭 이벤트 버블링 방지
+            e.stopPropagation(); 
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
             updateLightboxImage();
         }
@@ -562,7 +554,7 @@
             updateLightboxImage();
         }
 
-        // 배경(이미지 바깥 영역) 클릭 시 닫기
+        // 배경 클릭 시 닫기
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox || e.target === lightboxImg) {
                 closeLightbox();
